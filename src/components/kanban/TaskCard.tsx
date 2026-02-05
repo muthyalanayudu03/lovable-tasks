@@ -50,93 +50,93 @@
      setIsEditing(false);
    };
  
-   if (isEditing) {
-     return (
-       <Card className="bg-card shadow-card animate-scale-in">
-         <CardContent className="p-3 space-y-2">
-           <Input
-             value={editTitle}
-             onChange={(e) => setEditTitle(e.target.value)}
-             placeholder="Task title"
-             className="text-sm font-medium"
-             autoFocus
-           />
-           <Textarea
-             value={editDescription}
-             onChange={(e) => setEditDescription(e.target.value)}
-             placeholder="Add a description..."
-             className="text-sm resize-none"
-             rows={2}
-           />
-           <div className="flex gap-2 justify-end">
-             <Button size="sm" variant="ghost" onClick={handleCancel}>
-               <X className="h-4 w-4" />
-             </Button>
-             <Button size="sm" onClick={handleSave}>
-               <Check className="h-4 w-4" />
-             </Button>
-           </div>
-         </CardContent>
-       </Card>
-     );
-   }
+  if (isEditing) {
+    return (
+      <div className="glass-card rounded-lg animate-scale-in">
+        <div className="p-3 space-y-2">
+          <Input
+            value={editTitle}
+            onChange={(e) => setEditTitle(e.target.value)}
+            placeholder="Task title"
+            className="text-sm font-medium bg-background/50"
+            autoFocus
+          />
+          <Textarea
+            value={editDescription}
+            onChange={(e) => setEditDescription(e.target.value)}
+            placeholder="Add a description..."
+            className="text-sm resize-none bg-background/50"
+            rows={2}
+          />
+          <div className="flex gap-2 justify-end">
+            <Button size="sm" variant="ghost" onClick={handleCancel}>
+              <X className="h-4 w-4" />
+            </Button>
+            <Button size="sm" onClick={handleSave}>
+              <Check className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
  
-   return (
-     <motion.div
-       ref={setNodeRef}
-       style={style}
-       initial={{ opacity: 0, y: 8 }}
-       animate={{ opacity: 1, y: 0 }}
-       exit={{ opacity: 0, scale: 0.95 }}
-       className={isDragging ? 'z-50' : ''}
-     >
-       <Card
-         className={`
-           bg-card group cursor-grab active:cursor-grabbing
-           transition-all duration-200
-           ${isDragging ? 'shadow-drag scale-[1.02] rotate-1' : 'shadow-card hover:shadow-card-hover'}
-         `}
-       >
-         <CardContent className="p-3">
-           <div className="flex items-start gap-2">
-             <div
-               {...attributes}
-               {...listeners}
-               className="mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity cursor-grab"
-             >
-               <GripVertical className="h-4 w-4 text-muted-foreground" />
-             </div>
-             <div className="flex-1 min-w-0">
-               <h4 className="text-sm font-medium text-foreground leading-tight">
-                 {task.title}
-               </h4>
-               {task.description && (
-                 <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
-                   {task.description}
-                 </p>
-               )}
-             </div>
-             <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-               <Button
-                 size="icon"
-                 variant="ghost"
-                 className="h-6 w-6"
-                 onClick={() => setIsEditing(true)}
-               >
-                 <Pencil className="h-3 w-3" />
-               </Button>
-               <Button
-                 size="icon"
-                 variant="ghost"
-                 className="h-6 w-6 text-destructive hover:text-destructive"
-                 onClick={() => onDelete(task.id)}
-               >
-                 <Trash2 className="h-3 w-3" />
-               </Button>
-             </div>
-           </div>
-         </CardContent>
-       </Card>
-     </motion.div>
-   );
- }
+  return (
+    <motion.div
+      ref={setNodeRef}
+      style={style}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      className={isDragging ? 'z-50' : ''}
+    >
+      <div
+        className={`
+          glass-card rounded-lg group cursor-grab active:cursor-grabbing
+          transition-all duration-200
+          ${isDragging ? 'shadow-drag scale-[1.02] rotate-1' : 'hover:shadow-lg'}
+        `}
+      >
+        <div className="p-3">
+          <div className="flex items-start gap-2">
+            <div
+              {...attributes}
+              {...listeners}
+              className="mt-0.5 opacity-40 hover:opacity-100 transition-opacity cursor-grab"
+            >
+              <GripVertical className="h-4 w-4 text-muted-foreground" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h4 className="text-sm font-medium text-foreground leading-tight">
+                {task.title}
+              </h4>
+              {task.description && (
+                <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                  {task.description}
+                </p>
+              )}
+            </div>
+            <div className="flex gap-1">
+              <Button
+                size="icon"
+                variant="ghost"
+                className="h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                onClick={() => setIsEditing(true)}
+              >
+                <Pencil className="h-3.5 w-3.5" />
+              </Button>
+              <Button
+                size="icon"
+                variant="ghost"
+                className="h-7 w-7 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                onClick={() => onDelete(task.id)}
+              >
+                <Trash2 className="h-3.5 w-3.5" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}

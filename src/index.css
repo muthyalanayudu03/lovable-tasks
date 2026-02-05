@@ -40,19 +40,25 @@ All colors MUST be HSL.
 
     --radius: 0.5rem;
     
-    /* Kanban column colors */
-    --column-todo: 220 14% 96%;
+    /* Kanban column colors - glass effect */
+    --column-todo: 220 30% 95% / 0.6;
     --column-todo-accent: 224 76% 48%;
-    --column-progress: 45 93% 94%;
+    --column-progress: 45 80% 95% / 0.6;
     --column-progress-accent: 38 92% 50%;
-    --column-done: 142 76% 94%;
+    --column-done: 142 60% 95% / 0.6;
     --column-done-accent: 142 71% 45%;
+    
+    /* Glass effect */
+    --glass-bg: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 100% / 0.5;
+    --glass-blur: 12px;
     
     /* Card shadows */
     --shadow-sm: 0 1px 2px 0 hsl(220 13% 20% / 0.05);
     --shadow-md: 0 4px 6px -1px hsl(220 13% 20% / 0.1), 0 2px 4px -2px hsl(220 13% 20% / 0.1);
     --shadow-lg: 0 10px 15px -3px hsl(220 13% 20% / 0.1), 0 4px 6px -4px hsl(220 13% 20% / 0.1);
     --shadow-drag: 0 20px 25px -5px hsl(220 13% 20% / 0.15), 0 8px 10px -6px hsl(220 13% 20% / 0.1);
+    --shadow-glass: 0 8px 32px 0 hsl(220 13% 20% / 0.1);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -93,17 +99,22 @@ All colors MUST be HSL.
     --input: 215 28% 17%;
     --ring: 224 76% 55%;
     
-    --column-todo: 215 28% 12%;
+    --column-todo: 215 28% 15% / 0.6;
     --column-todo-accent: 224 76% 55%;
-    --column-progress: 38 40% 12%;
+    --column-progress: 38 40% 15% / 0.6;
     --column-progress-accent: 38 92% 50%;
-    --column-done: 142 40% 12%;
+    --column-done: 142 40% 15% / 0.6;
     --column-done-accent: 142 71% 45%;
+    
+    --glass-bg: 0 0% 10% / 0.5;
+    --glass-border: 0 0% 100% / 0.1;
+    --glass-blur: 12px;
     
     --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
     --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -2px hsl(0 0% 0% / 0.2);
     --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.3), 0 4px 6px -4px hsl(0 0% 0% / 0.2);
     --shadow-drag: 0 20px 25px -5px hsl(0 0% 0% / 0.4), 0 8px 10px -6px hsl(0 0% 0% / 0.3);
+    --shadow-glass: 0 8px 32px 0 hsl(0 0% 0% / 0.3);
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -138,5 +149,21 @@ All colors MUST be HSL.
   
   .shadow-drag {
     box-shadow: var(--shadow-drag);
+  }
+  
+  .glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: var(--shadow-glass);
+  }
+  
+  .glass-card {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: var(--shadow-glass);
   }
 }
