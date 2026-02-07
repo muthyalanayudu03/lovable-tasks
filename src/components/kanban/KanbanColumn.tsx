@@ -42,14 +42,14 @@
    const { setNodeRef, isOver } = useDroppable({ id });
    const styles = columnStyles[id];
  
-  return (
-    <div
-      className={`
-        flex flex-col rounded-xl p-4 min-h-[500px] w-80 flex-shrink-0
-        transition-all duration-200 glass
-        ${isOver ? 'ring-2 ring-primary ring-offset-2' : ''}
-      `}
-    >
+   return (
+     <div
+       className={`
+         flex flex-col rounded-xl p-3 sm:p-4 min-h-[300px] lg:min-h-[500px] w-full lg:w-80 flex-shrink-0
+         transition-all duration-200 glass
+         ${isOver ? 'ring-2 ring-primary ring-offset-2' : ''}
+       `}
+     >
        <div className="flex items-center gap-2 mb-4">
          <div className={`w-2 h-2 rounded-full ${styles.accent}`} />
          <h3 className="font-semibold text-foreground">{title}</h3>

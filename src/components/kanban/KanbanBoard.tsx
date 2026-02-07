@@ -70,38 +70,38 @@
      }
    };
  
-   return (
-     <DndContext
-       sensors={sensors}
-       onDragStart={handleDragStart}
-       onDragOver={handleDragOver}
-       onDragEnd={handleDragEnd}
-     >
-       <div className="flex gap-6 p-6 overflow-x-auto min-h-screen">
-         {columns.map((column) => (
-           <KanbanColumn
-             key={column.id}
-             id={column.id}
-             title={column.title}
-             tasks={getTasksByStatus(column.id)}
-             onAddTask={addTask}
-             onUpdateTask={updateTask}
-             onDeleteTask={deleteTask}
-           />
-         ))}
-       </div>
- 
-       <DragOverlay>
-         {activeTask && (
-           <div className="rotate-3 opacity-90">
-             <TaskCard
-               task={activeTask}
-               onUpdate={() => {}}
-               onDelete={() => {}}
-             />
-           </div>
-         )}
-       </DragOverlay>
-     </DndContext>
-   );
- }
+    return (
+      <DndContext
+        sensors={sensors}
+        onDragStart={handleDragStart}
+        onDragOver={handleDragOver}
+        onDragEnd={handleDragEnd}
+      >
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 p-3 sm:p-6 overflow-x-auto min-h-[calc(100vh-80px)]">
+          {columns.map((column) => (
+            <KanbanColumn
+              key={column.id}
+              id={column.id}
+              title={column.title}
+              tasks={getTasksByStatus(column.id)}
+              onAddTask={addTask}
+              onUpdateTask={updateTask}
+              onDeleteTask={deleteTask}
+            />
+          ))}
+        </div>
+
+        <DragOverlay>
+          {activeTask && (
+            <div className="rotate-3 opacity-90">
+              <TaskCard
+                task={activeTask}
+                onUpdate={() => {}}
+                onDelete={() => {}}
+              />
+            </div>
+          )}
+        </DragOverlay>
+      </DndContext>
+    );
+  }
