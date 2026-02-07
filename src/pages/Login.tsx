@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -11,9 +11,16 @@ const Login = () => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  // Redirect to home if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,12 +42,12 @@ const Login = () => {
 
   return (
     <div 
-      className="min-h-screen flex items-center justify-center p-4"
+      className="min-h-screen flex items-center justify-center p-3 sm:p-4"
       style={{
         background: 'linear-gradient(135deg, hsl(224 76% 95%) 0%, hsl(280 60% 95%) 50%, hsl(45 80% 95%) 100%)'
       }}
     >
-      <div className="glass-card rounded-2xl p-8 w-full max-w-md space-y-6">
+      <div className="glass-card rounded-xl sm:rounded-2xl p-5 sm:p-8 w-full max-w-md space-y-4 sm:space-y-6">
         {/* Header */}
         <div className="flex flex-col items-center gap-3">
           <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-primary/90 text-primary-foreground backdrop-blur-sm">
